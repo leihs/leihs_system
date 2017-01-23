@@ -23,9 +23,13 @@
   (html5
     (head)
     [:body {:class "body-container"}
-     mount-target
+     [:div.container-fluid
+      [:div.navbar.navbar-default.navbar-inverse {:style  "background-color: #770000;"}
+       [:div.container-fluid
+        [:div.navbar-header
+         [:a.navbar-brand "leihs System"]]]]
+      mount-target]
      (include-js "/js/app.js")]))
-
 
 (defroutes routes
   (GET "/" [] (loading-page))

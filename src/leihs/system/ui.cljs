@@ -1,8 +1,12 @@
 (ns leihs.system.ui
-    (:require [reagent.core :as reagent :refer [atom]]
-              [reagent.session :as session]
-              [secretary.core :as secretary :include-macros true]
-              [accountant.core :as accountant]))
+  (:require
+    [reagent.core :as reagent :refer [atom]]
+    [reagent.session :as session]
+    [secretary.core :as secretary :include-macros true]
+    [accountant.core :as accountant]
+    [cljsjs.jquery]
+    [cljsjs.bootstrap]
+    ))
 
 ;; -------------------------
 ;; Views
