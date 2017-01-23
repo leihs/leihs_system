@@ -1,4 +1,4 @@
-(ns leihs-system.middleware
+(ns leihs.system.middleware
   (:require [ring.middleware.defaults :refer [site-defaults wrap-defaults]]))
 
 (defn wrap-middleware [handler]

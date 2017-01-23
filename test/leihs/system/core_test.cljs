@@ -1,7 +1,7 @@
-(ns leihs-system.core-test
+(ns leihs.system.core-test
   (:require [cljs.test :refer-macros [is are deftest testing use-fixtures]]
             [reagent.core :as reagent :refer [atom]]
-            [leihs-system.core :as rc]))
+            [leihs.system.core :as rc]))
 
 
 (def isClient (not (nil? (try (.-document js/window)

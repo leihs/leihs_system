@@ -1,8 +1,8 @@
-(ns leihs-system.handler
+(ns leihs.system.handler
   (:require [compojure.core :refer [GET defroutes]]
             [compojure.route :refer [not-found resources]]
             [hiccup.page :refer [include-js include-css html5]]
-            [leihs-system.middleware :refer [wrap-middleware]]
+            [leihs.system.middleware :refer [wrap-middleware]]
             [config.core :refer [env]]))
 
 (def mount-target
@@ -30,7 +30,7 @@
 (defroutes routes
   (GET "/" [] (loading-page))
   (GET "/about" [] (loading-page))
-  
+
   (resources "/")
   (not-found "Not Found"))
 

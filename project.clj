@@ -24,21 +24,20 @@
             [lein-asset-minifier "0.2.7"
              :exclusions [org.clojure/clojure]]]
 
-  :ring {:handler leihs-system.handler/app
+  :ring {:handler leihs.system.handler/app
          :uberwar-name "leihs-system.war"}
 
   :min-lein-version "2.5.0"
 
   :uberjar-name "leihs-system.jar"
 
-  :main leihs-system.server
+  :main leihs.system.server
 
   :clean-targets ^{:protect false}
   [:target-path
    [:cljsbuild :builds :app :compiler :output-dir]
    [:cljsbuild :builds :app :compiler :output-to]]
 
-  :source-paths ["src/clj" "src/cljc"]
   :resource-paths ["resources" "target/cljsbuild"]
 
   :minify-assets
@@ -47,16 +46,16 @@
 
   :cljsbuild
   {:builds {:min
-            {:source-paths ["src/cljs" "src/cljc" "env/prod/cljs"]
+            {:source-paths ["env/prod"]
              :compiler
              {:output-to "target/cljsbuild/public/js/app.js"
               :output-dir "target/uberjar"
               :optimizations :advanced
               :pretty-print  false}}
             :app
-            {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
+            {:source-paths ["env/dev"]
              :compiler
-             {:main "leihs-system.dev"
+             {:main "leihs.system.dev"
               :asset-path "/js/out"
               :output-to "target/cljsbuild/public/js/app.js"
               :output-dir "target/cljsbuild/public/js/out"
@@ -64,8 +63,8 @@
               :optimizations :none
               :pretty-print  true}}
             :test
-            {:source-paths ["src/cljs" "src/cljc" "test/cljs"]
-             :compiler {:main leihs-system.doo-runner
+            {:source-paths ["test"]
+             :compiler {:main leihs.system.doo-runner
                         :asset-path "/js/out"
                         :output-to "target/test.js"
                         :output-dir "target/cljstest/public/js/out"
@@ -84,13 +83,13 @@
    :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
                       ]
    :css-dirs ["resources/public/css"]
-   :ring-handler leihs-system.handler/app}
+   :ring-handler leihs.system.handler/app}
 
 
   :sass {:src "src/sass"
          :dst "resources/public/css"}
 
-  :profiles {:dev {:repl-options {:init-ns leihs-system.repl
+  :profiles {:dev {:repl-options {:init-ns leihs.system.repl
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :dependencies [[ring/ring-mock "0.3.0"]
@@ -102,10 +101,10 @@
                                   [pjstadig/humane-test-output "0.8.1"]
                                   ]
 
-                   :source-paths ["env/dev/clj"]
+                   :source-paths ["env/dev"]
                    :plugins [[lein-figwheel "0.5.8"]
                              [lein-doo "0.1.6"]
-                             
+
                              [lein-sassy "1.0.7"]]
 
                    :injections [(require 'pjstadig.humane-test-output)
@@ -114,7 +113,7 @@
                    :env {:dev true}}
 
              :uberjar {:hooks [minify-assets.plugin/hooks]
-                       :source-paths ["env/prod/clj"]
+                       :source-paths ["env/prod"]
                        :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
                        :env {:production true}
                        :aot :all

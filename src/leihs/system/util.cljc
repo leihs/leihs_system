@@ -1,4 +1,4 @@
-(ns leihs-system.util)
+(ns leihs.system.util)
 
 (defn foo-cljc [x]
   "I don't do a whole lot."

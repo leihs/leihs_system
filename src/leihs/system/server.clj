@@ -1,5 +1,5 @@
-(ns leihs-system.server
-  (:require [leihs-system.handler :refer [app]]
+(ns leihs.system.server
+  (:require [leihs.system.handler :refer [app]]
             [config.core :refer [env]]
             [ring.adapter.jetty :refer [run-jetty]])
   (:gen-class))

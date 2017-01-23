@@ -1,5 +1,5 @@
-(ns ^:figwheel-no-load leihs-system.dev
-  (:require [leihs-system.core :as core]
+(ns ^:figwheel-no-load leihs.system.dev
+  (:require [leihs.system.core :as core]
             [figwheel.client :as figwheel :include-macros true]))
 
 (enable-console-print!)
