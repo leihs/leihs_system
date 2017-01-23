@@ -1,8 +1,7 @@
 (defproject leihs-system "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :license {:name "Dual: GPL / EPL"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [ring-server "0.4.0"]
@@ -24,7 +23,7 @@
             [lein-asset-minifier "0.2.7"
              :exclusions [org.clojure/clojure]]]
 
-  :ring {:handler leihs.system.handler/app
+  :ring {:handler leihs.system.web/app
          :uberwar-name "leihs-system.war"}
 
   :min-lein-version "2.5.0"
@@ -83,7 +82,7 @@
    :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
                       ]
    :css-dirs ["resources/public/css"]
-   :ring-handler leihs.system.handler/app}
+   :ring-handler leihs.system.web/app}
 
 
   :sass {:src "src/sass"

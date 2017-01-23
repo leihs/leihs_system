@@ -1,7 +1,7 @@
 (ns leihs.system.prod
-  (:require [leihs.system.core :as core]))
+  (:require [leihs.system.ui :as ui]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))
 
-(core/init!)
+(ui/init!)

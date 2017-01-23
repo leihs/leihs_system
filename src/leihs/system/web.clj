@@ -1,4 +1,4 @@
-(ns leihs.system.handler
+(ns leihs.system.web
   (:require [compojure.core :refer [GET defroutes]]
             [compojure.route :refer [not-found resources]]
             [hiccup.page :refer [include-js include-css html5]]

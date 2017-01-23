@@ -1,5 +1,5 @@
 (ns leihs.system.repl
-  (:use leihs.system.handler
+  (:use leihs.system.web
         figwheel-sidecar.repl-api
         ring.server.standalone
         [ring.middleware file-info file]))
