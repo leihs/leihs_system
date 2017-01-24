@@ -10,8 +10,13 @@
                  [cljsjs/bootstrap "3.3.6-1"]
                  [cljsjs/jquery "2.2.4-0"]
                  [compojure "1.5.1"]
+                 [hawk "0.2.11"]
                  [hiccup "1.0.5"]
+                 [log4j/log4j "1.2.17" :exclusions [javax.mail/mail javax.jms/jms com.sun.jdmk/jmxtools com.sun.jmx/jmxri]]
+                 [logbug "4.2.2"]
                  [org.clojure/clojurescript "1.9.293" :scope "provided"]
+                 [org.clojure/data.codec "0.1.0"]
+                 [org.slf4j/slf4j-log4j12 "1.7.21"]
                  [reagent "0.6.0"]
                  [reagent-utils "0.2.0"]
                  [ring "1.5.0"]
@@ -35,7 +40,7 @@
 
   :uberjar-name "leihs-system.jar"
 
-  :main leihs.system.server
+  :main leihs.system.main
 
   :clean-targets ^{:protect false}
   [:target-path
@@ -93,7 +98,7 @@
   :sass {:src "stylesheets"
          :dst "resources/public/css"}
 
-  :profiles {:dev {:repl-options {:init-ns leihs.system.repl
+  :profiles {:dev {:repl-options {:init-ns leihs.system.main
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :dependencies [[ring/ring-mock "0.3.0"]

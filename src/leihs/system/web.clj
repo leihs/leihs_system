@@ -1,9 +1,19 @@
 (ns leihs.system.web
-  (:require [compojure.core :refer [GET defroutes]]
-            [compojure.route :refer [not-found resources]]
-            [hiccup.page :refer [include-js include-css html5]]
-            [leihs.system.middleware :refer [wrap-middleware]]
-            [config.core :refer [env]]))
+  (:require
+
+    [leihs.system.middleware :refer [wrap-middleware]]
+    [leihs.system.auth]
+
+
+    [compojure.core :refer [GET defroutes]]
+    [compojure.route :refer [not-found resources]]
+    [hiccup.page :refer [include-js include-css html5]]
+    [config.core :refer [env]]
+
+    [clojure.tools.logging :as logging]
+    [logbug.debug :as debug :refer [I> I>> identity-with-logging]]
+    [logbug.ring :refer [wrap-handler-with-logging]]
+    ))
 
 (def mount-target
   [:div#app
@@ -27,7 +37,7 @@
       [:div.navbar.navbar-default.navbar-inverse {:style  "background-color: #770000;"}
        [:div.container-fluid
         [:div.navbar-header
-         [:a.navbar-brand "leihs System"]]]]
+         [:a.navbar-brand "Leihs System"]]]]
       mount-target]
      (include-js "/js/app.js")]))
 
@@ -38,4 +48,11 @@
   (resources "/")
   (not-found "Not Found"))
 
-(def app (wrap-middleware #'routes))
+(def app
+  (I> wrap-handler-with-logging
+      #'routes
+      wrap-middleware
+      leihs.system.auth/wrap))
+
+;;; DEBUG ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(debug/debug-ns *ns*)
