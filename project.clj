@@ -28,6 +28,11 @@
 
                  ]
 
+  ; jdk 9 needs ["--add-modules" "java.xml.bind"]
+  :jvm-opts #=(eval (if (re-matches #"^9\..*" (System/getProperty "java.version"))
+                      ["--add-modules" "java.xml.bind"]
+                      []))
+
   :plugins [[lein-environ "1.0.2"]
             [lein-cljsbuild "1.1.1"]
             [lein-asset-minifier "0.2.7"
